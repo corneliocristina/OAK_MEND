@@ -266,10 +266,10 @@ Note that the ```--patterns-limit``` is used to randomly sample a subset of BGPs
 The counts will be stored in JSON files under ```results/qcounts-{exp alias}```, e.g., ```results/qcounts-oak```.
 You can choose the patterns JSON file among the ones retrieved above, e.g., it can be one of:
 
-- ```query-bgps/lsq-bgp-patterns.json```: the real-world query patterns obtained from the LSQ-2.0 dataset.
-- ```query-bgps/artificial-patterns.json```: the artificial query patterns constructed by looking at domain-range constraints of predicates.
+- ```data/query-bgps/lsq-bgp-patterns.json```: the real-world query patterns obtained from the LSQ-2.0 dataset.
+- ```data/query-bgps/artificial-patterns.json```: the artificial query patterns constructed by looking at domain-range constraints of predicates.
 
-Moreover, to reduce the computational cost, note that in the above we can limit the number of patterns per query structure by taking the first $5\cdot 10^4$ patterns.
+Moreover, to reduce the computational cost, note that in the above we can limit the number of patterns per query structure by randomly selecting a subset of $10^4$ patterns for each pattern structure.
 Next, we can print the query pattern results (raw counts and our h-index metrics) by running the following:
 
 ```shell
