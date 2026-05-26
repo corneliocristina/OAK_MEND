@@ -307,7 +307,7 @@ This repository is a fork of the following project in the [SamsungLabs](https://
 *   **[OKGC](https://github.com/SamsungLabs/OKGC)**: The original repo containing the core implementation and datasets.
 
 
-### External Code
+## External Code
 
 This repository incorporates or adapts code from the following open-source projects:
 
