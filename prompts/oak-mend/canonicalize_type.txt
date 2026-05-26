@@ -1,0 +1,6 @@
+## Task Description
+Your task is to disambiguate an entity type for one or more entities extracted from text.
+
+## Inputs
+You will receive a text, a list of extracted entities, an extracted entity type, and a list of candidate types.
+Return a single type for all the entities. No additional text.

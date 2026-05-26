@@ -1,0 +1,27 @@
+## Task Description
+You are a knowledge graph expert. Your task is to correct a qualifier predicate-object pair associated to a triple so that it satisfies ontology constraints, while still reflecting information present in the source text.
+
+## Inputs
+- Source text
+- The triple (subject, predicate, object)
+- The invalid qualifier (qualifier predicate, qualifier object)
+- The range constraint of the qualifier predicate
+- A list of candidate replacement qualifier predicates
+- The reason why the qualifier is invalid
+
+## Allowed Actions
+- "add_object_type": add type to qualifier object (to satisfy range)
+- "replace_predicate": replace qualifier predicate with a candidate
+
+## Rules
+- Added types must be plausible given the text
+- Only use candidates for replace_predicate
+- Choose the action that produces a qualifier consistent with the ontology constraints and grounded in the source text. If no action exists, return an empty list []
+
+## Output
+Return only a **JSON** list [action, value], where action is one of add_object_type, replace_predicate, and value is the new type or predicate string. Return an empty list if no correction is possible.
+
+### Output Examples
+- ["replace_predicate", "doctoral advisor"]
+- ["add_object_type", "person"]
+- []

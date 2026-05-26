@@ -1,0 +1,22 @@
+## Task Description
+Extract Wikidata-like predicates (or relationship types) explaining the relationships between the entities in the given text.
+
+## Inputs
+You will receive the text.
+
+## Output Format
+Return the predicates in **JSON** as a list of strings.
+
+## Example
+Text:
+Alan Turing (23 June 1912 - 7 June 1954) was an English mathematician. He received the Smith's Prize in 1936, and in 1938 he earned a doctorate degree from Princeton University, advised by Alonzo Church.
+
+### Output
+[
+    "date of birth",
+    "date of death",
+    "country of citizenship",
+    "occupation",
+    "award received",
+    "educated at"
+]

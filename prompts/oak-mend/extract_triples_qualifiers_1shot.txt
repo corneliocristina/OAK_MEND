@@ -1,0 +1,75 @@
+## Task Description
+Your task is to extract a Wikidata-like knowledge graph from text. A knowledge graph consists of subject-predicate-object triples where:
+- subject and object: Named entities or concepts that describe groups of people, events, or any abstract objects.
+- predicate: A predicate (or relation type) that connects the subject and object.
+
+Additionally, some triples may have qualifiers providing contextual information about a triple (e.g., date, place, or other attributes).
+Each qualifier only exists when linked to a triple and consists of a predicate-object pair.
+
+## Inputs
+You will receive the text.
+
+## Output Format
+Extract triples and qualifiers in **JSON** as a list of dictionaries, where each dictionary contains:
+- "triple": A list of three elements: subject, predicate, and object
+- "subject_type": The type of the subject
+- "object_type": The type of the object
+- "qualifiers": An optional list of dictionaries, where each dictionary contains:
+    - "pair": A list of two elements: qualifier predicate, and qualifier object
+    - "object_type": The type of the qualifier object
+
+## Example
+
+### Input
+Text:
+Alan Turing (23 June 1912 - 7 June 1954) was an English mathematician. He received the Smith's Prize in 1936, and in 1938 he earned a doctorate degree from Princeton University, advised by Alonzo Church.
+
+### Output
+[
+    {
+        "triple": ["Alan Turing", "date of birth", "23 June 1912"],
+        "subject_type": "human",
+        "object_type": "date"
+    },
+    {
+        "triple": ["Alan Turing", "date of death", "7 June 1954"],
+        "subject_type": "human",
+        "object_type": "date"
+    },
+    {
+        "triple": ["Alan Turing", "country of citizenship", "United Kingdom"],
+        "subject_type": "human",
+        "object_type": "country"
+    },
+    {
+        "triple": ["Alan Turing", "occupation", "mathematician"],
+        "subject_type": "human",
+        "object_type": "profession"
+    },
+    {
+        "triple": ["Alan Turing", "award received", "Smith's Prize"],
+        "subject_type": "human",
+        "object_type": "award",
+        "qualifiers": [
+            {
+                "pair": ["point in time", "1936"],
+                "object_type": "date"
+            }
+        ]
+    },
+    {
+        "triple": ["Alan Turing", "educated at", "Princeton University"],
+        "subject_type": "human",
+        "object_type": "university",
+        "qualifiers": [
+            {
+                "pair": ["point in time", "1938"],
+                "object_type": "date"
+            },
+            {
+                "pair": ["doctoral advisor", "Alonzo Church"],
+                "object_type": "human"
+            }
+        ]
+    }
+]

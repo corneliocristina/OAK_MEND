@@ -1,0 +1,13 @@
+## Task Description
+Find duplicates for a given entity, and an entity alias that best represents the duplicates.
+Duplicates are those that are the same in meaning, such as with variation in tense, plural form, stem form, case, abbreviation, shorthand.
+
+## Inputs
+You will receive an entity and a list of candidate duplicate entities.
+
+## Output Format
+Return duplicates and the alias in **JSON** as a dictionary containing:
+- "duplicates": A list of duplicate entities taken from the candidates list
+- "alias": Best entity name to represent the duplicates
+
+If there are no duplicates, then return the empty dictionary {}.

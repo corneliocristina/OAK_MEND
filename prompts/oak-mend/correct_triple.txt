@@ -1,0 +1,29 @@
+## Task Description
+You are a knowledge graph expert. Your task is to correct an invalid subject-predicate-object (SPO) triple so that it satisfies ontology constraints, while still reflecting information present in the source text.
+
+## Inputs
+- Source text
+- The invalid triple (subject, predicate, object)
+- The domain and range constraints of the predicate
+- A list of candidate replacement predicates
+- The reasons why the triple is invalid
+
+## Allowed Actions (applied in sequence)
+- "swap": swap subject and object
+- "add_subject_type": add type to subject (to satisfy domain)
+- "add_object_type": add type to object (to satisfy range)
+- "replace_predicate": replace predicate with a candidate
+
+## Rules
+- Added types must be plausible given the text
+- Only use candidates for replace_predicate
+- Actions are applied in order, each modifying the result of the previous one
+- Choose the sequence of actions that produces a triple consistent with the ontology constraints and grounded in the source text. If no such sequence exists, return an empty list []
+
+## Output
+Return only a **JSON** list of [action, value] pairs, where action is one of swap, add_subject_type, add_object_type, replace_predicate, and value is the new type or predicate string (or null for swap). Return an empty list if no correction is possible.
+
+### Output Examples
+- [["replace_predicate", "publication date"]]
+- [["swap", null], ["add_object_type", "person"]]
+- []

@@ -1,0 +1,141 @@
+## Task Description
+Your task is to extract a Wikidata-like knowledge graph from text. A knowledge graph consists of subject-predicate-object triples where:
+- subject and object: Named entities or concepts that describe groups of people, events, or any abstract objects.
+- predicate: A predicate (or relation type) that connects the subject and object.
+
+Additionally, some triples may have qualifiers providing contextual information about a triple (e.g., date, place, or other attributes).
+Each qualifier only exists when linked to a triple and consists of a predicate-object pair.
+
+### Task Constraints
+You are allowed to use only the provided predicates.
+Most importantly, each provided predicate comes with its own set of allowed domain and range entity types.
+For each triple, the subject type must be one (or a specialization) of any type in the domain list specified by the predicate.
+In addition, the object type must be one (or a specialization) of any type in the range list specified by the predicate.
+If no types are specified as domain or range, then there are no type constraints for the subject or object entity, respectively.
+
+Furthermore, you are allowed to use only the provided qualifiers.
+Most importantly, each predicate comes with its own list of allowed qualifier predicates.
+In addition, the qualifier object type must be one (or a specialization) of any type in the range list specified by the qualifier predicate.
+If no types are specified as range, then there are no type constraints for the qualifier object entity.
+
+## Inputs
+You will receive the text, the list of allowed predicates each with their own domain-range and permitted qualifiers constraints, and the list of allowed qualifiers each with their own range constraint.
+
+## Output Format
+Extract triples and qualifiers in **JSON** as a list of dictionaries, where each dictionary contains:
+- "subject": The subject entity
+- "predicate": The predicate
+- "object": The object entity
+- "subject_type": The type of the subject
+- "object_type": The type of the object
+- "qualifiers": An optional list of dictionaries, where each dictionary contains:
+    - "predicate": The qualifier predicate
+    - "object": The qualifier object
+    - "object_type": The type of the qualifier object
+
+## Example
+
+### Input
+Text:
+Alan Turing (23 June 1912 - 7 June 1954) was an English mathematician. He received the Smith's Prize in 1936, and in 1938 he earned a doctorate degree from Princeton University, advised by Alonzo Church.
+
+Allowed predicates:
+- date of birth
+    - Domain: ['human', 'dog', 'cat', 'horse', 'Animalia', 'character (fictional human or non-human character in a narrative work of art)', 'clonal colony', 'stillborn child', 'fictional animal character', 'individual organism', 'legendary figure', 'Hominin fossil', 'human whose existence is disputed', 'fictional organism', 'captive mammal', 'fictional human formerly considered to be historical', 'prosopographical phantom', 'hypothetical person']
+    - Range: ['point in time']
+    - Qualifiers: []
+- date of death
+    - Domain: ['human', 'organism', 'character (fictional human or non-human character in a narrative work of art)', 'person (being that has certain capacities or attributes constituting personhood)', 'legendary figure', 'group of humans', 'human whose existence is disputed', 'imaginary character']
+    - Range: ['point in time']
+    - Qualifiers: []
+- country of citizenship
+    - Domain: ['human', 'character (fictional human or non-human character in a narrative work of art)', 'demonym', 'fictional human', 'group of humans', 'figure that may or may not be fictional']
+    - Range: ['country', 'nation', 'citizenship', 'empire', 'federated state', 'colony', 'city-state', 'polis', 'dependent territory', 'confederation', 'nationality', 'political territorial entity', 'fictional country', 'fictional planet', 'historical country', 'sovereign state', 'disputed territory', 'country in a fiction work', 'former or current state']
+    - Qualifiers: []
+- occupation
+    - Domain: ['human', 'robot', 'pseudonym', 'character (fictional human or non-human character in a narrative work of art)', 'person (being that has certain capacities or attributes constituting personhood)', 'working animal', 'individual organism', 'professional name', 'figure that may or may not be fictional', 'individual animal']
+    - Range: ['profession', 'job activity', 'working animal', 'title of authority', 'position (social role with a set of powers and responsibilities within an organization)', 'occupation', 'fictional profession', 'fictional office, position, or title', 'fictional religious occupation', 'religious occupation', 'Christian religious occupation', 'Catholic vocation', 'Islamic religious occupation', 'fictional analog of an occupation']
+    - Qualifiers: []
+- award received
+    - Domain: []
+    - Range: ['coat of arms', 'medallion', 'order (visible honour awarded to an individual recipient)', 'literary award', 'title of authority', 'award', 'Roman triumph', 'hall of fame', 'military decoration', 'title of honor', 'position (social role with a set of powers and responsibilities within an organization)', 'recognition', 'science award', 'homage', 'class of award', 'film award category', 'fictional award', 'grade of an order']
+    - Qualifiers: ['point in time']
+- educated at
+    - Domain: ['human', 'class (in education, a group of students taking the same course, or at the same level in an institution)', 'character (fictional human or non-human character in a narrative work of art)', 'alumnus']
+    - Range: ['hospital', 'monastery', 'seminar', 'convent', 'education program', 'educational institution', 'educational organization', 'fictional educational institution', 'former entity', 'scientific organization', 'educational facility', 'division of an educational institution', 'training organization', 'defunct organization', 'former educational institution']
+    - Qualifiers: ['point in time', 'doctoral advisor']
+
+Allowed qualifiers:
+- point in time
+    - Range: ['point in time']
+- doctoral advisor
+    - Range: ['human', 'fictional human']
+
+### Output
+[
+    {
+        "subject": "Alan Turing",
+        "predicate": "date of birth",
+        "object": "23 June 1912",
+        "subject_type": "human",
+        "object_type": "point in time",
+        "qualifiers": []
+    },
+    {
+        "subject": "Alan Turing",
+        "predicate": "date of death",
+        "object": "7 June 1954",
+        "subject_type": "human",
+        "object_type": "point in time",
+        "qualifiers": []
+    },
+    {
+        "subject": "Alan Turing",
+        "predicate": "country of citizenship",
+        "object": "United Kingdom",
+        "subject_type": "human",
+        "object_type": "country",
+        "qualifiers": []
+    },
+    {
+        "subject": "Alan Turing",
+        "predicate": "occupation",
+        "object": "mathematician",
+        "subject_type": "human",
+        "object_type": "profession",
+        "qualifiers": []
+    },
+    {
+        "subject": "Alan Turing",
+        "predicate": "award received",
+        "object": "Smith's Prize",
+        "subject_type": "human",
+        "object_type": "award",
+        "qualifiers": [
+            {
+                "predicate": "point in time",
+                "object": "1936",
+                "object_type": "point in time"
+            }
+        ]
+    },
+    {
+        "subject": "Alan Turing",
+        "predicate": "educated at",
+        "object": "Princeton University",
+        "subject_type": "human",
+        "object_type": "educational institution",
+        "qualifiers": [
+            {
+                "predicate": "point in time",
+                "object": "1938",
+                "object_type": "point in time"
+            },
+            {
+                "predicate": "doctoral advisor",
+                "object": "Alonzo Church",
+                "object_type": "human"
+            }
+        ]
+    }
+]

@@ -1,0 +1,6 @@
+## Task Description
+Your task is to disambiguate a predicate indicating the relationship type between pairs of entities extracted from text. Assume the predicate direction is not important.
+
+## Inputs
+You will receive a text, a list of extracted entity pairs, the extracted predicate, and a list of candidate predicates.
+Return a single predicate for all the entity pairs. No additional text.

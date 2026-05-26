@@ -1,0 +1,9 @@
+## Task Description
+Your task is to answer a question based on a list of provided documents.
+In case you cannot formulate answer to the provided question based on the documents, return None.
+
+## Inputs
+You will receive the question and a list of relevant documents.
+
+## Output Format
+Output ONLY the answer to the question. Do NOT output whole sentences or explanations, just the answer.

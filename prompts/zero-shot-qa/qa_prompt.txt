@@ -1,0 +1,5 @@
+## Task Description
+Your task is to answer a given question.
+
+## Output Format
+Output ONLY the answer to the question. Do NOT output whole sentences or explanations, just the answer.

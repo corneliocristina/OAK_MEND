@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/Code%20License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 # OAK + MEND: Knowledge Graph Construction under Ontology Constraints
 
 This repository contains the implementation for the paper _``Better Later Than Sooner: Neuro-Symbolic Knowledge Graph Construction via Ontology-grounded Post-extraction Correction``_.
@@ -291,3 +293,36 @@ python -m scripts.eval.patterns.hscores hotpot1000 \
 ```
 
 This will print the results in two formats: Markdown (in ```results.md```) and in JSON (in ```results.json```).
+
+
+# License and Attributions
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE.md) file for more information.
+
+
+## Original Repository
+
+This repository is a fork of the following project in the [SamsungLabs](https://github.com/SamsungLabs) GitHub organization:
+
+*   **[OKGC](https://github.com/SamsungLabs/OKGC)**: The original repo containing the core implementation and datasets.
+
+
+### External Code
+
+This repository incorporates or adapts code from the following open-source projects:
+
+*   **[Wikontic](https://github.com/screemix/Wikontic)**, which is licensed under the [MIT License](https://github.com/screemix/Wikontic/blob/main/LICENSE).
+*   **[KG-GEN](https://github.com/stair-lab/kg-gen)**, which is licensed under the [MIT License](https://github.com/stair-lab/kg-gen/blob/main/README.md).
+
+## Citation
+
+If you find this work useful for your research, please consider citing our paper:
+
+```bibtex
+@article{loconte2026betterlater,
+  title={Better Later Than Sooner: Neuro-Symbolic Knowledge Graph Construction via Ontology-grounded Post-extraction Correction},
+  author={Loconte, Lorenzo and Hospedales, Timothy and Cornelio, Cristina},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2026}
+}
+```

@@ -1,0 +1,51 @@
+[project]
+name = "okgc"
+version = "0.0.1"
+authors = [{ name = "unknown", email = "unknown@unknown.com" }]
+description = ""
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+license = "MIT"
+dependencies = [
+    "pip",
+    "vllm",
+    "langchain",
+    "sentence-transformers",
+    "semhash",
+    "inflect",
+    "dspy",
+    "nltk",
+    "spacy",
+    "semchunk",
+    "langdetect",
+    "scikit-learn",
+    "rank-bm25",
+    "SPARQLWrapper",
+    "qlever",
+    "pydantic",
+    "dacite",
+    "unidecode",
+    "seaborn",
+    "tueplots",
+    "pymongo",
+    "ipykernel",
+    "more-itertools",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["okgc"]
+
+[tool.uv.extra-build-variables]
+vllm = { UV_TORCH_BACKEND = "auto" }
+
