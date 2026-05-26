@@ -94,10 +94,6 @@ The rest of the arguments being shown are optional and can be used to change the
 
 Below we give instructions to run some baselines.
 
-### Running the baselines
-
-Below we give instructions to run some baselines.
-
 #### Wikontic
 
 To run the original implementation of [Wikontic](https://arxiv.org/abs/2512.00590), you need to first setup and run a MongoDB database as follows (requires ```docker``` being installed):
