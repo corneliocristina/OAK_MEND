@@ -205,7 +205,7 @@ if __name__ == "__main__":
     )
     inputs_path = os.path.join(
         "results",
-        "kgc-okgc" if not args.in_alias else f"kgc-okgc-{args.in_alias}",
+        "kgc-oak" if not args.in_alias else f"kgc-oak-{args.in_alias}",
         args.dataset,
         llm_name,
         inner_filepath,

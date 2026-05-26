@@ -177,7 +177,7 @@ if __name__ == "__main__":
     # Setup the outputs path
     outputs_path = os.path.join(
         "results",
-        "kgc-okgc" if not args.out_alias else f"kgc-okgc-{args.out_alias}",
+        "kgc-oak" if not args.out_alias else f"kgc-oak-{args.out_alias}",
         args.dataset,
         format_llm_name(client.model),
         build_results_path(

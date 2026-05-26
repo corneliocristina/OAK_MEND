@@ -82,13 +82,17 @@ python -m scripts.kgc.oak hotpot1000 --ranges "0-999" \
   --llm-api-base "http://localhost:9110/v1" --sent-embed-api-base "http://localhost:9200/v1" --verbose
 ```
 
-As specified by the required argument ```--ranges "0-999"```, this will run the KG construction method on all the 500 text fragments in HotpotQA, but you can choose which HotpotQA fragments to execute the method on.
+As specified by the required argument ```--ranges "0-999"```, this will run the KG construction method on all the 1000 text fragments in HotpotQA, but you can choose which HotpotQA fragments to execute the method on.
 The rest of the arguments being shown are optional and can be used to change the LLM and sentence embedder models, as well as the endpoint ports.
 
 > [!NOTE]
 > **Where are the generated KGs stored?**
 > You can find JSON files storing all the results in the ```results/kgc-oak``` directory.
 > If an ```--out-alias {exp alias}``` argument is additionally specified in the KG construction script shown above, then the results will be stored in ```results/kgc-oak-{exp alias}```.
+
+### Running the baselines
+
+Below we give instructions to run some baselines.
 
 ### Running the baselines
 
@@ -159,17 +163,17 @@ For instance, if you used OAK then you need to specify ```--in-alias oak```, whi
 
 ## Correcting the knowledge graphs
 
-In order to run our KG correction method (which we call OntologyMend for now), you need to execute the following
+To run our KG correction method you need to execute the following
 
 ```shell
-python -m scripts.kgc.mend hotpot1000 --ranges "0-999" \
+python -m scripts.kgc.mend hotpot1000 --ranges "0-999" --correct-qualifiers \
   --llm-api-base "http://localhost:9110/v1" --sent-embed-api-base "http://localhost:9200/v1"
 ```
 
 By default, the script will load the KGs from ```results/kgc-oak```.
 However, you can load the KGs from ```results/kgc-oak-{exp alias}``` by specifying the flag ```--in-alias {exp alias}``` in the KG correction script above.
 
-Furthermore, you can optionally enable the qualifiers correction as well by adding the ```--correct-qualifiers``` flag.
+Furthermore, you can optionally disable the qualifiers correction step by removing the ```--correct-qualifiers``` flag.
 Similarly to the ```scripts.kgc.oak``` script, you can use ```--n-jobs``` to spawn multiple parallel processes using the same LLM and embedding endpoints.
 Finally, you can evaluate the ontology consistency of KG after the corrections by using the ```scripts.eval.kgc_results``` script as described above.
 
@@ -213,7 +217,7 @@ Alternatively, you can build the two datasets from scratch as follows.
 
 ### Retrieve real-world patterns from the LSQ-2.0 query logs dataset
 
-We extract patterns from the LSQ-2.0 query logs dataset, which contains queries executed using the Wikidata endpoint.
+We extract patterns from the [LSQ-2.0 query logs dataset](https://www.semantic-web-journal.net/content/lsq-20-linked-dataset-sparql-query-logs), which contains queries executed using the Wikidata endpoint.
 To retrieve and preprocess the patterns, we need to execute the following:
 
 ```shell
@@ -269,7 +273,7 @@ You can choose the patterns JSON file among the ones retrieved above, e.g., it c
 - ```query-bgps/lsq-bgp-patterns.json```: the real-world query patterns obtained from the LSQ-2.0 dataset.
 - ```query-bgps/artificial-patterns.json```: the artificial query patterns constructed by looking at domain-range constraints of predicates.
 
-Moreover, to reduce the computational cost, note that in the above we can limit the number of patterns per query structure by taking the first $5\cdot 10^4$ patterns.
+Moreover, to reduce the computational cost, note that in the above we can limit the number of patterns per query structure by taking the first $10^4$ patterns.
 Next, we can print the query pattern results (raw counts and our h-index metrics) by running the following:
 
 ```shell
