@@ -82,7 +82,7 @@ python -m scripts.kgc.oak hotpot1000 --ranges "0-999" \
   --llm-api-base "http://localhost:9110/v1" --sent-embed-api-base "http://localhost:9200/v1" --verbose
 ```
 
-As specified by the required argument ```--ranges "0-999"```, this will run the KG construction method on all the 500 text fragments in HotpotQA, but you can choose which HotpotQA fragments to execute the method on.
+As specified by the required argument ```--ranges "0-999"```, this will run the KG construction method on all the 1000 text fragments in HotpotQA, but you can choose which HotpotQA fragments to execute the method on.
 The rest of the arguments being shown are optional and can be used to change the LLM and sentence embedder models, as well as the endpoint ports.
 
 > [!NOTE]
@@ -159,17 +159,17 @@ For instance, if you used OAK then you need to specify ```--in-alias oak```, whi
 
 ## Correcting the knowledge graphs
 
-In order to run our KG correction method (which we call OntologyMend for now), you need to execute the following
+In order to run our KG correction method you need to execute the following
 
 ```shell
-python -m scripts.kgc.mend hotpot1000 --ranges "0-999" \
+python -m scripts.kgc.mend hotpot1000 --ranges "0-999" --correct-qualifiers \
   --llm-api-base "http://localhost:9110/v1" --sent-embed-api-base "http://localhost:9200/v1"
 ```
 
 By default, the script will load the KGs from ```results/kgc-oak```.
 However, you can load the KGs from ```results/kgc-oak-{exp alias}``` by specifying the flag ```--in-alias {exp alias}``` in the KG correction script above.
 
-Furthermore, you can optionally enable the qualifiers correction as well by adding the ```--correct-qualifiers``` flag.
+Furthermore, you can optionally disable the qualifiers correction by removing the ```--correct-qualifiers``` flag.
 Similarly to the ```scripts.kgc.oak``` script, you can use ```--n-jobs``` to spawn multiple parallel processes using the same LLM and embedding endpoints.
 Finally, you can evaluate the ontology consistency of KG after the corrections by using the ```scripts.eval.kgc_results``` script as described above.
 
